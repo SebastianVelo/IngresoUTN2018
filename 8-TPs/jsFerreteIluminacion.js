@@ -8,7 +8,45 @@ E.	Si el importe final con descuento suma más de $120  se debe sumar un 10% de 
  ”Usted pago X de IIBB.”, siendo X el impuesto que se pagó. 
 
  */
-function CalcularPrecio () 
+function CalcularPrecio() 
 {
- 	
+ 	var precioUnidad = 35;
+	var precioTotal;
+	var cantidad = parseInt(document.getElementById("Cantidad").value);
+	var marca = document.getElementById("Marca").value;
+	var descuento = 0;
+	
+	switch(cantidad){
+			case 1: 
+			case 2: 
+					break;
+			case 3: 
+					if(marca == "ArgentinaLuz")
+						descuento = precioUnidad * .15;
+					else if (marca == "FelipeLamparas")			
+						descuento = precioUnidad * .10;
+					else if						
+						descuento = precioUnidad * .05;
+					break;
+			case 4: 
+					if(marca == "ArgentinaLuz" || marca == "FelipeLamparas")
+						descuento = precioUnidad * .25;
+					else 			
+						descuento = precioUnidad * .20;
+					break;
+			case 5: 
+					if(marca == "ArgentinaLuz")
+						descuento = precioUnidad * .40;
+					else 			
+						descuento = precioUnidad * .30;
+					break;
+			default:
+					descuento = precioUnidad * 0.50;				
+	}
+
+	precioUnidad -= descuento;
+	precioTotal = precioUnidad * cantidad;
+	precioTotal = precioTotal > 120 ? precioTotal * 1.1 : precioTotal;
+	document.getElementById("Cantidad").value = "Unidad: " + precioUnidad + " ||| Total: " + precioTotal;
+		
 }
